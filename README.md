@@ -159,4 +159,28 @@
     - ROUGE: 用来评价覆盖性，是否包含最关键的信息，但是对连贯性不敏感，ROUGE-1和人类标注有更高的相关性。
     - 人工抽样：让语言学家来判断，原始的方法和我们的方法哪个更连贯。
 - 总结：本文的写作通俗易懂。首次提出了解决摘要的连贯性（coherence）的的解决办法，首次不使用话语分析就可实现连惯性的摘要
+
+## 这几天好像又懒了
+
+### 7.Learning to Encode Text as Human-Readable Summaries using Generative Adversarial Networks.pdf
+
+- 年份： 2018-EMNLP
+- 内容介绍
+  本文在压缩输入的句子自动潜在空间表示方面，人很难理解，本文提出了训练自动编码输入的句子可以人类可读，从而实现不成对的摘要总结。
+- 创新点
+  生成人类可读的摘要，并且是无监督的
+- 模型介绍
+  - 本文介绍了一种模型，该模型由生成器G，判别器D,和重构器R构成。G和R是seq2seq模型，给生成器喂一个长的句子，输出一个包含内容重要信息的短句子，扔给D去判断和真是句子的差别的大小，利用R能够通过这个短句子构建输入的长句子。G和D构成GAN神经网络的训练。  
+  在整个训练过程中，最小化重构损失，最大话的回报。
+  - 关于GAN的训练，可以有WGAN（梯度惩罚），最大化D的损失，最小化G的损失。Self-Critic Adversarial REINFORCE方法，核心的方法是用LSTM来当D，评估当前的G的输出结果，包含Self-Critic Generator 和 Discriminator 2两部分。
+- 数据集
+  - English Gigaword : 这是一个每个文章有对应title的的数据集
+  - CNN/Daily Mail dataset:长文本摘要数据集，并且对应的有摘要
+  - Chinese Gigaword： 长文本摘要数据集，包含摘要和新闻。
+- 评估手段
+  - ROUGE-n gram系列，S1是预测的句子，S2为标注好的句子
+    - ROUGE-1：1-gram,每个单词，定义为= （S1和S2的交集）/(len(S2))
+    - ROUGE-2： 2-gram，连续的两个单词构成。定义和一一样，但是这里是2-gram的交集和S2的2-gram的长度
+    - ROUGE-L：L代表最长子序列，（单字哈）
+    详细介绍 <https://blog.csdn.net/qq_25222361/article/details/78694617>，感谢这位博主，通俗易懂，很好理解
   
