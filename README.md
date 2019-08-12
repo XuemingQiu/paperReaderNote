@@ -183,4 +183,21 @@
     - ROUGE-2： 2-gram，连续的两个单词构成。定义和一一样，但是这里是2-gram的交集和S2的2-gram的长度
     - ROUGE-L：L代表最长子序列，（单字哈）
     详细介绍 <https://blog.csdn.net/qq_25222361/article/details/78694617>，感谢这位博主，通俗易懂，很好理解
-  
+
+### 8.Improving Semantic Relevance for Sequence-to-Sequence Learning of Chinese Social Media Text Summarization
+
+- 年份： 2017-ACL
+- 内容介绍：
+  本文基于Encoder-Decoder框架，加入门控的attention机制，利用余弦相似函数增强输出的摘要和原文的语义相关性。抽取式的摘要，语义相关性高，生成式的语义相关性不高。
+- 创新点：
+  短文本的摘要适合Encoder-Decoder框架，但是以前的方法，侧重句法和连贯性，并不关注语义相关性。本文就提出了增强语义相关性。
+  - 门控的注意力机制来捕获信息
+  - 加入相似性判断来优化损失函数
+- 模型介绍
+  基于Encoder-Decoder框架加入了a gate attention 和 相似度函数好 度量生成的的句子和原句的相似度，是的使得生成的句子能够有更好的语义。
+- 数据集
+  - LCSTS（Large Scale Chinese Short Text Summarization Dataset）:中文新闻数据集，带有摘要的数据
+- 评估
+  - Baseline：
+    - RNN：双向的GRU编码，单项的GRU解码
+    - RNN context：seq2seq框架，attention机制捕获信息
