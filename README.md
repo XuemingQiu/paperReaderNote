@@ -199,5 +199,19 @@
   - LCSTS（Large Scale Chinese Short Text Summarization Dataset）:中文新闻数据集，带有摘要的数据
 - 评估
   - Baseline：
-    - RNN：双向的GRU编码，单项的GRU解码
+    - RNN：双向的GRU(门循环单元)编码，单项的GRU解码
     - RNN context：seq2seq框架，attention机制捕获信息
+
+### Generating Summaries with Topic Templates and Structured Convolutional Decoders.pdf
+
+- 年份：2019 ACL
+- 内容介绍：  
+  多文本的长文本摘要，根据摘要和文本主题的相关，依据Encoder-decoder框架，设计了一个CNN用来编码，LSTM作为句子水平的解码和分层的CNN文档水平的解码，一个三层结构，细分了每个段落的主题，最后生成一个全局上的文本摘要，使得摘要内容的覆盖性更高。
+- 创新点：
+  - 考虑了文本的内容结构和句子水平和文档水平的主题
+  - 采用了CNN而不是RNN
+- 数据集：WIKICATSUM数据集（代码和数据集 <https://github.com/lauhaide/WikiCatSum>）,包含公司，动物，电影三个数据集。
+- 评价指标
+  - ROUGE分数
+  - 人工评估分数
+  
