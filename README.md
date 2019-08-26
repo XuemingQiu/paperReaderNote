@@ -202,7 +202,7 @@
     - RNN：双向的GRU(门循环单元)编码，单项的GRU解码
     - RNN context：seq2seq框架，attention机制捕获信息
 
-### Generating Summaries with Topic Templates and Structured Convolutional Decoders.pdf
+### 9.Generating Summaries with Topic Templates and Structured Convolutional Decoders.pdf
 
 - 年份：2019 ACL
 - 内容介绍：  
@@ -214,4 +214,41 @@
 - 评价指标
   - ROUGE分数
   - 人工评估分数
+  
+### 10. Neural_Extractive_Text_Summarization_with_Syntactic_Compression.pdf
+
+- 年份 2019
+- 内容介绍：  
+  本文介绍了一种基于神经网络的文本摘要抽取和句法压缩的系统模型，进行的是单一文本摘要；
+  - 抽取：
+  - 句法压缩：删除一些无用的信息（这里指词），这类的方法大概都是 句法解析驱动，当然也有使用端到端的神经网络模型；
+      这里包含一个压缩的阈值参数，传统的压缩规则根据句法的规则，如同位语名词短语，相关分句和副词，动名词短语。介词短语，
+- 模型介绍
+  - 句子抽取选择，选择k个句子，使用双向的LSTM编码句子或者文档的，利用卷基层和最大池化层来抽取每个句子的表示，解码阶段使用一个序列的LSTM来解码，具体的步骤见论文描述
+  - 文本压缩，移除固定的短语或者单词，压缩使用一个二分类，决定一个单词删还是不删，用启发式的重复数据删除，减少冗余性
+  - 后面又提出了一个改进的模型，前K句作为候选的模型（LEAD BASELINE），LEADDEDUP使用启发重复数据删除来选择K句，JECS为结合了抽取和压缩摘要一起。
+- 创新点
+  - 抽取文本的摘要，使用了神经网络来抽取，传统的都是句子排序和关键字权重
+  - 句法上压缩抽取出来的句子，得到更短的句子作为文档的摘要，这里的压缩使用一个二分类决定这个词保留还是不保留。
+- 数据集(3个新闻数据集)
+  - the New York Times corpus(NYT):
+  - CNN：
+  - Daily-mail(DM)：
+  分词工句使用了斯坦福的CoreNLP分词器。
+- Baseline：
+  - 抽取式：
+    - NeuSum: seq2seq模型预测一个句子序列从文档中选不选择。（本文和这个类似）
+    - Refresh：抽取模型的句子排序分数
+    - BanditSum：抽取摘要作为 语境问题 处理
+    - LatSum：用额外的生成压缩模块的潜在抽取模型
+  - 生成式：
+    - PointGenCov：复制和覆盖机制
+    - FARS：摘要重写模型（抽取的top句，重写）
+    - CBDec：seq2seq模型，在解码阶段有所提高模型
+- 评价指标
+  - ROUGE
+  - F1去近似Rouge
+  - 语法评价指标：
+        - 1. 使用了Amazon Mechanical Turk
+        - 2. 人为分析
   
