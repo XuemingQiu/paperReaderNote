@@ -301,4 +301,45 @@
   - ROUGE-1
   - ROUGE-2:分数最高，说明摘要更加的流利
   - ROUGE-4
-  
+
+### 13.Retrieve_Rerank_and_Rewrite_Soft_Template_Based_Neural_Summarization.pdf
+
+- 年份是：2019 ACL
+- 内容介绍：（更详细的介绍参考了 [博客](https://blog.csdn.net/appleml/article/details/89306681)）
+seq2seq模型目前还有很多缺点，本文所做实验表明：
+  - （1）生成的文本过短，3%的摘要不超过3个词
+  - （2）随着生成序列的增加，生成性能急剧恶化
+  - （3）重复生成某个词
+  - （4）侧重于复制原文  
+也就是说基于原文自由式生成的摘要的seq2seq模型目前效果还不甚满意，所以本文想要结合摘要模板做生成，又由于传统的基于模板的文本摘要也有如下缺陷：
+  - （1）构建模板非常耗时
+  - （2）需要有专业的领域知识
+  - （3）开发各个领域的所有摘要模板不现实  
+受基于检索的对话系统的启发，作者认为相似文本的摘要作为软模板，用于指导当前文本生成摘要有指导，所以本文的做法是：seq2seq+soft template
+本文的方法有三个模块，分别是Retrieve, Rerank以及Rewrite:
+  - Retrieve: soft template,使用了基于lucene的检索IR分析平台来进行挑选出句子作为软模板，默认选择30个，验证集和测试集只挑选最相似的一个作为soft template.
+  - Rerank: 双向lstm编码输入句子x和模板r，再利用用Bilinear network 预测输入 x 和软模板 r 的相似度，在Retrieve阶段保留了30个候选软模板，所以30个不同的软模板 r 分别与 x 计算相似度， 所以需要对30个软模板进行排序
+  - Rewrite:通过上一步的Rerank步骤后，我们从30个候选软模板中挑选出了最和输入句子 x 相似度最高的软模板 r, 由于软模板 r 是其他训练输入句子的摘要，并且 r 中包含的命名实体可能在句子 x 中可能从未出现过，所以 r 不能粗鲁的认为是 x 的 摘要，但是可以依据模板 r 指导句子 x 的 摘要生成。基于此，本文引入了可以具有重写能力的seq2seq model.首先，将句子的隐状态信息和模板的隐状态信息进行拼接，然后送入一个标准的attention seq2seq 框架去生成一个输出序列的隐状态，然后经过一个softmax layer预测摘要中的词（注意一次只生成一个词，类似于机器翻译）
+  - 学习阶段：本文将Rerank和Rewrite两个联合训练，所以损失函数由两部分组成，在Rerank中，使用交叉熵损失函数，在Rewrite阶段，最大化评估概率。
+- 创新点：
+  - 结合了软模板来克服seq2seq的不足点
+  - 扩展seq2seq模型框架来知道模板排序和生成模板摘要
+  - 第一次使用基于检索的IR和seq2seq结合
+- 数据集
+  使用了英文的标注Gigaword语料集，下载地址 <https://github.com/harvardnlp/sent-summary>
+- Baseline
+  - 本文的代码< <http://www4.comp.polyu.edu.hk/~cszqcao/> > (目前似乎访问不了)
+  - ABS:用CNN编码+神经网络语言模型（NNLM）解码生成摘要句子
+  - ABS+：计入hand-crafted特征平衡抽取和生成摘要
+  - RAS-Elman：ABS的扩展模型，用卷积神经注意力编码+RNN解码
+  - Featseq2seq：完整的seq2seq RNN模型，加入hand-crafted（如POS tag and NER）来增强编码表示
+  - Luong-NMT：神经机器翻译模型，包含两层LSTM,每层500个隐状态
+  - OpenNMT：用OpenNMT实现标准的注意力seq2seq模型
+  - FTSum：编码抽取到的原文来提高生成摘要的置信和信息量
+- 评估手段
+  - ROUGE用来评估摘要的覆盖量（信息量）
+  - 摘要质量评估：
+    - LEN_DIF: 长度不同，影响了可读性和稳定性
+    - LESS_3: 生成少于3个单词的摘要，可读性差
+    - COPY： 从原文复制单词占比，比例越大就说明需要压缩
+    - NEW_NE: 未出现的命名实体数目，直觉上会带来不合理，用斯坦福的coreNLP工具来识别
