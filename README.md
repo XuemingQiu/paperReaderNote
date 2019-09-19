@@ -304,7 +304,7 @@
 
 ### 13.Retrieve_Rerank_and_Rewrite_Soft_Template_Based_Neural_Summarization.pdf
 
-- 年份是：2019 ACL
+- 年份是：2018 ACL
 - 内容介绍：（更详细的介绍参考了 [博客](https://blog.csdn.net/appleml/article/details/89306681)）
 seq2seq模型目前还有很多缺点，本文所做实验表明：
   - （1）生成的文本过短，3%的摘要不超过3个词
