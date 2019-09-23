@@ -363,7 +363,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - 评估手段
   - ROUGE
 
-### Towards_Opinion_Summarization_of_Customer_Reviews.pdf
+### 15.Towards_Opinion_Summarization_of_Customer_Reviews.pdf
 
 - 年份：2018 ACL Workshop
 - 内容介绍：本文是一篇综述类的文章，主要介绍了在用户评价观点上进行文本摘要总结的一些基于神经网络的基本方法，同时阐述了未来的发展方向，目前方法存在的问题。
