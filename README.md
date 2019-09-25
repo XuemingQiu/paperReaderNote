@@ -393,10 +393,28 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 ### 16.Graph-based_Neural_Multi-document_Summarization.pdf
 
 - 年份：2017 CoNLL
-- 内容介绍：本文介绍了一种基于句子关系图的多文档摘要（MDS），利用了基于关系的[图卷积神经网络（GCN）][<https://www.jianshu.com/p/89fbed65cd04?winzoom=1>]，句子的表示使用了RNN来获得输入节点的特征（也就是句子的embedding），通过逐层传播，GCN生成句子高级的隐藏层特征，用来评估重要性（salience estimation），然后使用贪心的形式抽取刚刚得到表示的句子同时避免冗余性。
-- 创新点
-- 数据集：DUC数据集，
+- 内容介绍：本文介绍了一种基于句子关系图的多文档摘要（MDS），利用了基于关系的[图卷积神经网络（GCN）][<https://www.jianshu.com/p/89fbed65cd04?winzoom=1>]，句子的表示使用了RNN来获得输入节点的特征（也就是句子的embedding），通过逐层传播，GCN生成句子高级的隐藏层特征，用来评估重要性（salience> estimation），然后使用贪心的形式抽取刚刚得到表示的句子同时避免冗余性。
+  - 基于图的多文档总结（MDS）：LexRank基于句子特征向量
+  - 基于神经网络的摘要：句子压缩，RNN Encoder-Decoder（加入注意力机制），评估相关性和重要性
+- 创新点：
+  - 不要费力的句子编码解码框架
+  - 利用句子关系图
+- 本文方法
+  - 两步走：1. 句子重要性评估 2. 句子选择
+    - 句子重要性评估：先建立句子关系图（使用了门控循环神经网络（GRU（Gate Recurrent Unit））），最后的隐藏状态作为句子的Embedding，然后在有句子Embedding的句子关系图上利用图卷积网络（GCN）来产生最后的句子Embedding作为整个图的表示. 用最后的句子Embedding去评估了之前每个节点的句子的重要性分数。第二层的GRU表示为整个类的Embedding，过程和上述类似。
+    - 根据每句话的重要性分数，然后利用贪心的办法选择出长度限制的摘要。
+  - 聚类上的图表示：3中办法的句子关系的权重边连接。
+    - 第一种
+      1. 标准的余弦相似度 $siliarity = \frac{S_i \cdot S_j}{|S_i| \cdot |S_j|}$,其中$S_i,S_j$分别为句子i,j的Embedding。
+      2. tf-idf余弦相似,先用tfidf求得关键子，再得到关键词的频率向量（词袋模型），在根据余弦公式计算。详细的[参见][<https://www.cnblogs.com/wxiaoli/p/6940702.html>]
+    - 第二种
+      - G-Flow系统：利用句子的对话关系作为图表示（Approximate Discouse Graph（ADG）），构建边是通过构建对话关系指示, 比如动名词，事件/实体连续.....
+      - 缺点：缺乏多样性的权重分配。
+    - 第三种
+      - 提出了PDG（Personal Discouse Graph):主要是个性化的特征，其他计算办法和ADG类似，只是规则上不一样了
+- 数据集：DUC数据集，在DUC2001,2002上训练，DUC2003上验证,DUC2004上测试
 - Baseline
+  - 按照三种边权值不同的构建进行实验。
 - 评价指标
   - Rouge
   
