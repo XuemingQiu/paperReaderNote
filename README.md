@@ -425,4 +425,24 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - 创新点
   - 将主题模型引入进来明确的文章主题
   - 利用RNN模型进行语句通顺性调整
-  
+
+### 18.Unsupervised Semantic Abstractive Summarization.pdf
+
+- 年份：2018 ACL Student Research  Workshop
+- 内容介绍  
+  - 本文介绍了一种为SAS（Semantic Abstract Summarization）开发的新的的pipeline，首先生成句子的AMR（Abatrsct Meaning Representation）图，然后通过该图来总结子图，最后从这个总结子图中生成最后的摘要。
+  - 详细介绍：
+    - AMR：试图捕获一个句子中“谁在对谁干什么（who is doing what to whom）”，AMR表示由根，无环，标签，有向图构成。边表示语义概念关系，节点代表概念。
+    - 本文提供了一个可供选择的方法使用AMR来生成抽象总结。人类写总结的过程是先写下关键短语，然后指出他们的关系，接着组织这些数据。所以本文先找到最重要的实体/事件（entities/events）,接着区分重要的实体/事件之间的关系,最后捕获信息通过选择这些关系。
+    - 本文Pipeline过程：[code](<https://github.com/shibhansh/Unsupervised-SAS>)
+      - 文档转成AMR图：具有相同实体的节点合并使用了共指消解（co-reference resolution）技术，包含统计、规则、神经网络。
+      - 总结图抽取：1. 先找到关键的节点，利用的tfidf找到n个重要的节点 2. 找到节点之间的重要的关系。本文利用了启发式（利用共现性），靠近根节点任意两节点的路径 3. 捕获周围的信息。用OpenIE Banko来捕获，选择最大的关系元祖。
+      - 总结生成：从抽取的AMR图来生成。
+- 创新点
+  - 更容易理解的生成AMR图的过程。使用了共指消解（co-reference resolution）和源节点（Meta Nodes）
+  - 关键的子图抽取无监督的算法
+- 数据集：
+  - proxy report section of the AMR Bank Knight et al.(2014) 完全不知道的一个数据集：提供了为新闻文章极其摘要的人类生成的AMR图。 
+- 评价指标
+  - 准确率、召回率、F1值
+  - ROUGE分数
