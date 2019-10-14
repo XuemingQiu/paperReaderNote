@@ -446,3 +446,24 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - 评价指标
   - 准确率、召回率、F1值
   - ROUGE分数
+
+### 19.Toward_Abstractive_Summarization_Using_Semantic_Representations.pdf
+
+- 年份 2018 arxiv
+- 内容介绍
+  - 本文提出了一个新的摘要生成办法，利用AMR（abstract Meaning Representation），原文本解析成一个AMR图，然后转成一个摘要图，摘要就从这个图里产生。也就是一种图到图的转换，本框架是数据驱动训练。本文[代码](<https://github.com/summarization/semantic_summ>)
+  - [详细介绍](<https://blog.csdn.net/cx943024256/article/details/86556507>)
+  - 本文流程：1. 先将一个文本的句子解析成AMR图 2.合并这些句子的AMR图合并成一个总图（本文的重点，当做一个[结构预测1](<https://zhuanlan.zhihu.com/p/41165572>)和[结构话预测2](<https://zhuanlan.zhihu.com/p/39745877>)，就是序列的输出是结构化的数据（如序列，图，树，图等）） 3. 从整体上生成摘要
+  - 第2步重点合并AMR的图，也就是合并相同的节点，为保证联通性，增加了一个无意义的ROOT节点，有向，无环的句子语法图。第一步作者使用了JAMR工具进行构建句子的AMR图
+  - 总图生成：主要包含4个部分 Collapsing、Merging、Expansion、Subgraph Prediction
+    - Collapsing: 将由多个节点构成的命名实体或时间实体看作是一个单独的节点。比如（人A，名字，李四）就是由三个节点构成的命名实体，他就可以被视为一个节点。
+    - Merging:在所有句子中，出现的同一个节点（比如李四在两个句子中都出现），都合并为一个节点。同时与他们想关联的边以及标记都连接到这个新的节点上。最后，新建一个新的根节点，并将这个根节点连接到所有句子各自原先的根节点上，将多个句子连接成新的总图.
+    - Expansion: 每个句子中，添加新的节点给所有可能存在关系的节点对。比如 the dog running in the garden就可以得到the dog is in the garden 的新内容
+    - Subgraph Prediction:作者将这个问题看做是一个结构化预测问题，然后使用整数线性规划（ILP）的方式进行子图约束，之后使用支持向量机对上面的系数进行学习，最终可得到提取到的最优的子图。
+  - 文本生成：之前就已经有了基于统计的方法，但是到发文日都没有一个以使用AMR进行机器翻译为目标的系统。所以作者只是使用启发式的方法生成了一个词袋
+  - 创新点
+    - 首次利用了AMR进行摘要生成，实体共指消歧解决节点合并，但依然存在节点合并不全的问题。
+  - 数据集
+    - proxy report 数据集：带人工标注的AMR图和摘要：从English Gigaword corpus选择单篇新闻得到的标注数据集。
+  - 评估手段：Rouge-1
+  
