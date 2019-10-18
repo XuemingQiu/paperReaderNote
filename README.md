@@ -467,3 +467,36 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
     - proxy report 数据集：带人工标注的AMR图和摘要：从English Gigaword corpus选择单篇新闻得到的标注数据集。
   - 评估手段：Rouge-1
   
+### 20.Features_in_Extractive_Supervised_Single-document_Summarization_Case_of_Persian_News.pdf
+
+- 年份： 2019 arXiv preprint 
+- 内容介绍
+  - 本文提出了波斯语的的一个抽取摘要的办法，利用特征在抽取监督单文摘要方面的研究。因为抽取式的办法更为简单，不用生成句子，抽取式更加流行，核心在与句子分数排序，本文讲文本特征整合成每个句子的向量。基本的流程是 监督抽取摘要 -> 排序机排序句子 -> 选取top-n句作为句子摘要。
+  - 整合文本特征：监督的抽取式摘要分为两段：
+    - Learning Phase:如何排序句子分数，采用MSE（均方误差mean square error）和R2（coefficient of determination）评估
+      - 特征抽取：文档敏感（document-aware features）和文档不敏感（document-unaware features），如文档的属性
+        - document-unaware features：  
+          1. 句子位置：认为开头和结尾的句子更有可能是摘要。
+          2. 句子长度：定义不清楚，一个固定的句子长度，例如15个单词，在一些文章为长句，在一些文档文档短句
+          3. 名词比率：名词形容词动词副词的比率
+          4. 数字实体比率：讲道理应该是更低的权重
+          5. 暗示词：如in conclusion/overall等词,更有可能是中心句（摘要句）
+        - document-aware features
+          1. 余弦位置：$pos(index) =  \frac{cos(\frac{2\pi*idnex}{T-1})+\alpha-1}{\alpha}$ 其中index为用整数表示的第几句话，T为文档的总数，$\alpha$为微调参数。这个值取值范围为 $[0,1]$
+          2. 相对句子长度：$Relative Length(s) = \frac{|s|}{\frac{\sigma_{i=1}^{n}|s_i|}{n}}$,其中n为文档的句子树，$s_i$为第i句，这个比率大于1认为是长句
+          3. TF-ISF：句子的频繁项，类似于 TF-IDF一样
+          4. POS特征：词性标注特征，名词，动词，形容词，副词，量词。定义为$ratio = \frac{句子中动词的个数}{文档中动词的个数}$
+        - 明确的文档特征
+          1. 文档句子：文档句子数量参与排序，包含暗示单词的句子
+          2. 文档单词数：文档的单词个数 决定了文档的长度。
+          3. 主题类别：政治经济
+      - 目标分配：每个特征向量需要一个目标值，系统学会如何给句子排序。本文采用了回归的方式来训练模型
+    - Summarization Phase：从Learning Phase 排序句子得到摘要，采用了ROUGE评估
+      - 特征抽取：分词，去停词，常见步骤
+      - 句子排序：为每个句子预测一个0到1之间的值
+      - 句子选择：解决可读性，按照文章句子出现的顺序排列，顺带考虑切断句子长度
+- 创新点
+  - 考虑了文档的每个属性，增加了精确的文档特征（如文档属性）
+- 数据集
+  - Pasokh数据集：包含100条波斯新闻，每条有5个摘要，6个类别，文档长度4-150句
+  
