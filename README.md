@@ -500,7 +500,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - 数据集
   - Pasokh数据集：包含100条波斯新闻，每条有5个摘要，6个类别，文档长度4-150句
   
-### 21.Gather customer concerns from online product reviews – A text summarization approach.pdf
+### 21. Gather customer concerns from online product reviews – A text summarization approach.pdf
 
 - 年份： 2009 Expert Systems with Applications
 - 内容介绍：
@@ -509,3 +509,28 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
     - 主题区分：主要是要通过一个频繁单词序列的寻找，只要是一个迭代的找到用户观点中共现信息的频繁序列，有点像Aprior算法，
     - MMR抽取得到候选句子：将观点句子分在主题下面，然后MMR抽取下重要的句子
     - 后选句子排序：根据用户id来排序候选的句子（每个观点用用户的id来标记）
+  
+### 22. Sentence_Ordering_and_Coherence_Modeling_using_Recurrent_Neural_Networks.pdf
+
+- 年份：2018 AAAI
+- 内容介绍
+  - 想法来自于作者想要去表示更深层的句子表示，然后联想到去建立句子的连贯性（局部连贯性和全局连贯性）的模型，使用循环网络解决句子的顺序问题。也就是学会句子集合的结构。
+  - 本文利用了RNN去来解决句子顺序问题。编码部分使用了set Encoder (set2seq框架)，解码使用了Pointer network. 本文的过程分为3段：read，process，write。
+    - 分数函数：和窗口网络的类似，考虑了双线性的分数函数
+    - 对比句子：把握整体的理解
+    - 连贯模型：定义连贯性分数为偏序函数
+  - 顺序区分：主要当成一个二分类的任务
+  - 句子顺序：捕获高级的句子的逻辑结构
+  - 句子顺序和摘要
+- 创新点：
+  - 捕获句子的顺序的有用文本表示
+  - 可视化捕获句子段落结构的高水平的逻辑结构的模型
+- 数据集：
+  - Accidents and Earthquakes new reports(顺序区分实验数据集)
+  - NIPS Abstract、ACL Abstrsct、NSF Abstract（句子顺序 实验数据集）
+  - DailyMail、CNN dataset（句子顺序和摘要 实验数据集，使用了Rouge 评估）
+- Baseline
+  - Entity Grid：实体网格表示实体关系（[工具](<bitbucket.org/melsner/browncoherence>)）
+  - Seq2Seq:
+  - 窗口网络：
+  - RNN解码：
