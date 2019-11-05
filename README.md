@@ -442,7 +442,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - 更容易理解的生成AMR图的过程。使用了共指消解（co-reference resolution）和源节点（Meta Nodes）
   - 关键的子图抽取无监督的算法
 - 数据集：
-  - proxy report section of the AMR Bank Knight et al.(2014) 完全不知道的一个数据集：提供了为新闻文章极其摘要的人类生成的AMR图。 
+  - proxy report section of the AMR Bank Knight et al.(2014) 完全不知道的一个数据集：提供了为新闻文章极其摘要的人类生成的AMR图。
 - 评价指标
   - 准确率、召回率、F1值
   - ROUGE分数
@@ -469,7 +469,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   
 ### 20.Features_in_Extractive_Supervised_Single-document_Summarization_Case_of_Persian_News.pdf
 
-- 年份： 2019 arXiv preprint 
+- 年份： 2019 arXiv preprint
 - 内容介绍
   - 本文提出了波斯语的的一个抽取摘要的办法，利用特征在抽取监督单文摘要方面的研究。因为抽取式的办法更为简单，不用生成句子，抽取式更加流行，核心在与句子分数排序，本文讲文本特征整合成每个句子的向量。基本的流程是 监督抽取摘要 -> 排序机排序句子 -> 选取top-n句作为句子摘要。
   - 整合文本特征：监督的抽取式摘要分为两段：
@@ -502,7 +502,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   
 ### 21.Gather customer concerns from online product reviews – A text summarization approach.pdf
 
-- 年份： 2009 Expert Systems with Applications 
+- 年份： 2009 Expert Systems with Applications
 - 内容介绍：
   - 这是一个系统类的应用，该论文首次见个自动摘要的技术应用到了观点挖掘，情感分析中，一般的只是进行正负性的判断，为购买者和开发者提供建议。本文办法如下：
     - 去停词，和还原词性
