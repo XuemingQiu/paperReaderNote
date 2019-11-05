@@ -35,10 +35,10 @@
 - 内容概要：本文首次提出了给主题模型跑出来的抽象的topic，进行主题实际意义的命名。以前有人尝试过用 单词，短语，和图像来进行直观的主题的主题描述，还有抽取抽取句子作为主题的描述。本文定义了怎样的主题label是更好的，只要是 主题label和主题词的高相关性，高概括性，不同topic之间的高区分性。本文提出了基于子模优化的算法进行候选句子的筛选。
 - 创新点:  
        1. 首次提出了用文本摘要进行主题打标签  
-       2. 基于子模优化的文本摘要生成算法  $f(A+C)-f(A) > f(B+C)+f(B)$，说明A优与B，具体的子模函数[介绍][<https://blog.csdn.net/s1102379635/article/details/8524397>]
+       2. 基于子模优化的文本摘要生成算法  $f(A+C)-f(A) > f(B+C)+f(B)$，说明A优与B，具体的子模函数[介绍](<https://blog.csdn.net/s1102379635/article/details/8524397>)
 - 对比实验  
        1. MEAD：使用启发的策略进行发现和第一个句子相似的每个句子分数  
-       2. LEXRank：主要通过句子之间的县四度的判断对文本和词汇进行分类，以句子为节点，构造标量图，节点间的连线代表句子的相似程度（权重，用余弦相似度衡量$f(i,j) = \frac{S_i\dot S_j}{|S_i||S_j|}$），句子不相似就没有边(相似度大于一定的阈值)，在对每句话进行评分时，充分考虑顶点的度和权重，即句子的核心性和相关程度大小，然后超过一定阈值的就作为文章关键句子，更加详细的[介绍][<https://blog.csdn.net/Silience_Probe/article/details/80699986>]
+       2. LEXRank：主要通过句子之间的县四度的判断对文本和词汇进行分类，以句子为节点，构造标量图，节点间的连线代表句子的相似程度（权重，用余弦相似度衡量$f(i,j) = \frac{S_i\dot S_j}{|S_i||S_j|}$），句子不相似就没有边(相似度大于一定的阈值)，在对每句话进行评分时，充分考虑顶点的度和权重，即句子的核心性和相关程度大小，然后超过一定阈值的就作为文章关键句子，更加详细的[介绍](<https://blog.csdn.net/Silience_Probe/article/details/80699986>)
        3. REL：子模函数最大化  
   标签比较：词标签，短语标签，句子标签  
 - 指标：  
@@ -73,13 +73,13 @@
     推断过程还是通过Gibbs采样的过程。
 - 数据集：
    1. NIPS：NIPS COFFERCE PAPER
-   2. Yahoo！Answers. <http://answers.yahoo.com/>
+   2. Yahoo！Answers. [地址](<http://answers.yahoo.com/>)
 - 总结：本文通过长文本来解决短文本的稀疏性问题的解决，提出的纯度的评估准则，后来作为评估主题的一个重要的手段。
 最近的自己真的是浪得很，一方面是一位懒，一方卖弄是因为总是被各种事打扰，没有细心去读了论文，真是罪过啊！！！
 
 ### 5. Recent_Advances_in_Document_Summarization.pdf  
 
-- 内容描述：这是一篇关于最近几年先进的文本摘要或者文本总结的综述性论文，完整翻译见<https://blog.csdn.net/jinhao_2008/article/details/78695508>
+- 内容描述：这是一篇关于最近几年先进的文本摘要或者文本总结的综述性论文，[完整翻译](<https://blog.csdn.net/jinhao_2008/article/details/78695508>)
   
   - 什么是好的摘要或者总结？ 覆盖单文本或多文本（每个聚类）的重要信息，并且不重复，语法上连贯。
   - 目前的方法：主要来提高概念覆盖，信息多样，内容相关性。同时也在尝试句子压缩和生成。
@@ -97,14 +97,14 @@
          - 目前一些机器学习的算法应用到该领域。给定一个句子和其对应分数lable进行训练回归模型，然后直接预测句子得分。或者是一些排名的算法来给句子排名。后来隐马尔科夫，条件随机场和SVM都会用来抽取摘要，但是这种方法严重的依赖与训练集的大小。查询类的摘要主要计算查询的句子和每个句子之间的相似度。
      2. 句子筛选:选取最能代表文章中心的句子作为代表。
         - 根据第一步句子得到的分数，最直接的方式是选取分数高的句子，但这个现象在多文档摘要中会使得重复的信息严重。
-        - 典型的句子选择算法是 最大边缘相关（maximum marginal relevance(MMR)）算法，详细的[描述][<https://blog.csdn.net/eliza1130/article/details/24033161>]
-        - 概率的办法就是在概率分布和输入的单词评估之间 最小化KL(Kullback-Leibler)散度，也为相对熵。[详见][<https://baike.baidu.com/item/%E7%9B%B8%E5%AF%B9%E7%86%B5/4233536?fr=aladdin>]
+        - 典型的句子选择算法是 最大边缘相关（maximum marginal relevance(MMR)）算法，详细的[描述](<https://blog.csdn.net/eliza1130/article/details/24033161>)
+        - 概率的办法就是在概率分布和输入的单词评估之间 最小化KL(Kullback-Leibler)散度，也为相对熵。[详见](<https://baike.baidu.com/item/%E7%9B%B8%E5%AF%B9%E7%86%B5/4233536?fr=aladdin>)
         - 最广泛的还是整合线性规划（ILP），目标在受限的情况下最大化覆盖率。
      3. 句子标准化：对选出的句子进行修改和压缩，形成总结性的句子。根据第二部选择出的句子可能包含重复和不必要的信息。  
         - 有两种方法解决这类问题： 流水线是抽取，基于规则的压缩。
           在单文档的摘要中保证句子在原来文档中的顺序；在多文档的摘要中则要重排顺序。经典的重排句子的策略是句子权重图或者是基于时间戳和位置的时间排序算法。
   - 评估策略：（好的摘要易读和有高概括性）
-    - ROUGE(Recall-oriented Understudy for Gisty Evalustion)：ROUGE基于摘要中n元词(n-gram)的共现信息来评价摘要，是一种面向n元词召回率的评价方法。基本思想为由多个专家分别生成人工摘要，构成标准摘要集，将系统生成的自动摘要与人工生成的标准摘要相对比，通过统计二者之间重叠的基本单元(n元语法、词序列和词对)的数目，来评价摘要的质量。通过与专家人工摘要的对比，提高评价系统的稳定性和健壮性.[详细][<https://blog.csdn.net/mch2869253130/article/details/89810974>].  
+    - ROUGE(Recall-oriented Understudy for Gisty Evalustion)：ROUGE基于摘要中n元词(n-gram)的共现信息来评价摘要，是一种面向n元词召回率的评价方法。基本思想为由多个专家分别生成人工摘要，构成标准摘要集，将系统生成的自动摘要与人工生成的标准摘要相对比，通过统计二者之间重叠的基本单元(n元语法、词序列和词对)的数目，来评价摘要的质量。通过与专家人工摘要的对比，提高评价系统的稳定性和健壮性.[详细](<https://blog.csdn.net/mch2869253130/article/details/89810974>).  
       当然还有其他的自动文摘的评测办法，论文一提而过。
   - 目前方法介绍  
    文本摘要要求信息覆盖，连贯性，不冗余，和简洁性。基于查询的文本摘要还是计算查询和语句的相似度和overlap度。
@@ -183,7 +183,7 @@
     - ROUGE-1：1-gram,每个单词，定义为= （S1和S2的交集）/(len(S2))
     - ROUGE-2： 2-gram，连续的两个单词构成。定义和一一样，但是这里是2-gram的交集和S2的2-gram的长度
     - ROUGE-L：L代表最长子序列，（单字哈）
-    详细介绍 <https://blog.csdn.net/qq_25222361/article/details/78694617>，感谢这位博主，通俗易懂，很好理解
+    [详细介绍] (<https://blog.csdn.net/qq_25222361/article/details/78694617>)，通俗易懂，很好理解
 
 ### 8.Improving Semantic Relevance for Sequence-to-Sequence Learning of Chinese Social Media Text Summarization
 
@@ -211,7 +211,7 @@
 - 创新点：
   - 考虑了文本的内容结构和句子水平和文档水平的主题
   - 采用了CNN而不是RNN
-- 数据集：WIKICATSUM数据集（代码和数据集 <https://github.com/lauhaide/WikiCatSum>）,包含公司，动物，电影三个数据集。
+- 数据集：WIKICATSUM数据集（[代码和数据集](<https://github.com/lauhaide/WikiCatSum>)）,包含公司，动物，电影三个数据集。
 - 评价指标
   - ROUGE分数
   - 人工评估分数
@@ -265,7 +265,7 @@
   - 保留了文档原来的亲和关系
   - 提出了可调整的亲和预留随机游走算法去克服在随机游走过程中的多样性限制
 - 传统随机游走算法
-  具体见<https://cloud.tencent.com/developer/article/1098856>的介绍
+  [具体介绍](<https://cloud.tencent.com/developer/article/1098856>)
 - 模型介绍：本文亲和度预留随机游走算法
 - BaseLine：只列以图排序的算法系统
   - Cont. LexPageRank：2004年提出，主要从特征向量计算计算句子的显著性，类似于PageRank，亲和矩阵转成行随机矩阵，用来当做随机游走的权重图。
@@ -327,9 +327,9 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - 扩展seq2seq模型框架来知道模板排序和生成模板摘要
   - 第一次使用基于检索的IR和seq2seq结合
 - 数据集
-  使用了英文的标注Gigaword语料集，下载地址 <https://github.com/harvardnlp/sent-summary>
+  使用了英文的标注Gigaword语料集，[下载地址](<https://github.com/harvardnlp/sent-summary>)
 - Baseline
-  - 本文的代码< <http://www4.comp.polyu.edu.hk/~cszqcao/> > (目前似乎访问不了)
+  - 本文的[代码](<http://www4.comp.polyu.edu.hk/~cszqcao/>) (目前似乎访问不了)
   - ABS:用CNN编码+神经网络语言模型（NNLM）解码生成摘要句子
   - ABS+：计入hand-crafted特征平衡抽取和生成摘要
   - RAS-Elman：ABS的扩展模型，用卷积神经注意力编码+RNN解码
@@ -393,7 +393,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 ### 16.Graph-based_Neural_Multi-document_Summarization.pdf
 
 - 年份：2017 CoNLL
-- 内容介绍：本文介绍了一种基于句子关系图的多文档摘要（MDS），利用了基于关系的[图卷积神经网络（GCN）][<https://www.jianshu.com/p/89fbed65cd04?winzoom=1>]，句子的表示使用了RNN来获得输入节点的特征（也就是句子的embedding），通过逐层传播，GCN生成句子高级的隐藏层特征，用来评估重要性（salience> estimation），然后使用贪心的形式抽取刚刚得到表示的句子同时避免冗余性。
+- 内容介绍：本文介绍了一种基于句子关系图的多文档摘要（MDS），利用了基于关系的[图卷积神经网络（GCN）](<https://www.jianshu.com/p/89fbed65cd04?winzoom=1>)，句子的表示使用了RNN来获得输入节点的特征（也就是句子的embedding），通过逐层传播，GCN生成句子高级的隐藏层特征，用来评估重要性（salience> estimation），然后使用贪心的形式抽取刚刚得到表示的句子同时避免冗余性。
   - 基于图的多文档总结（MDS）：LexRank基于句子特征向量
   - 基于神经网络的摘要：句子压缩，RNN Encoder-Decoder（加入注意力机制），评估相关性和重要性
 - 创新点：
@@ -406,7 +406,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - 聚类上的图表示：3中办法的句子关系的权重边连接。
     - 第一种
       1. 标准的余弦相似度 $siliarity = \frac{S_i \cdot S_j}{|S_i| \cdot |S_j|}$,其中$S_i,S_j$分别为句子i,j的Embedding。
-      2. tf-idf余弦相似,先用tfidf求得关键子，再得到关键词的频率向量（词袋模型），在根据余弦公式计算。详细的[参见][<https://www.cnblogs.com/wxiaoli/p/6940702.html>]
+      2. tf-idf余弦相似,先用tfidf求得关键子，再得到关键词的频率向量（词袋模型），在根据余弦公式计算。详细的[描述](<https://www.cnblogs.com/wxiaoli/p/6940702.html>)
     - 第二种
       - G-Flow系统：利用句子的对话关系作为图表示（Approximate Discouse Graph（ADG）），构建边是通过构建对话关系指示, 比如动名词，事件/实体连续.....
       - 缺点：缺乏多样性的权重分配。
@@ -434,7 +434,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - 详细介绍：
     - AMR：试图捕获一个句子中“谁在对谁干什么（who is doing what to whom）”，AMR表示由根，无环，标签，有向图构成。边表示语义概念关系，节点代表概念。
     - 本文提供了一个可供选择的方法使用AMR来生成抽象总结。人类写总结的过程是先写下关键短语，然后指出他们的关系，接着组织这些数据。所以本文先找到最重要的实体/事件（entities/events）,接着区分重要的实体/事件之间的关系,最后捕获信息通过选择这些关系。
-    - 本文Pipeline过程：[code](<https://github.com/shibhansh/Unsupervised-SAS>)
+    - 本文Pipeline过程：[代码](<https://github.com/shibhansh/Unsupervised-SAS>)
       - 文档转成AMR图：具有相同实体的节点合并使用了共指消解（co-reference resolution）技术，包含统计、规则、神经网络。
       - 总结图抽取：1. 先找到关键的节点，利用的tfidf找到n个重要的节点 2. 找到节点之间的重要的关系。本文利用了启发式（利用共现性），靠近根节点任意两节点的路径 3. 捕获周围的信息。用OpenIE Banko来捕获，选择最大的关系元祖。
       - 总结生成：从抽取的AMR图来生成。
