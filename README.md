@@ -534,3 +534,17 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - Seq2Seq:
   - 窗口网络：
   - RNN解码：
+
+### 22. Global_Encoding_for_Abstractive_Summarization.pdf
+
+- 年份： 2108 ACL short paper
+- 内容介绍：
+  - 本文主要解决了seq2seq模型产生的摘要的重复性和语义无关的问题。本文提出了用卷积门控单元来增强文章的内容表示，达到捕获文章的中心信息。编码使用了双向的LSTM，解码使用了无向的LSTM解码。本文的方法就在编码的部分实现
+  - 本文的代码参参见[代码](<https://www.github.com/lancopku/Global-Encoding>)
+- 创新点
+  - 解决的摘要的单词重复性和语义无关的问题
+- 数据集
+  - LCSTS:来自新浪微博的大量短文本的摘要
+  - English Gigaword: 标注的新闻数据集
+- Baseline见文章的内容。其实在之前的论文里面也有介绍过，不在赘述。
+  
