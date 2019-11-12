@@ -535,7 +535,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - 窗口网络：
   - RNN解码：
 
-### 22. Global_Encoding_for_Abstractive_Summarization.pdf
+### 23. Global_Encoding_for_Abstractive_Summarization.pdf
 
 - 年份： 2108 ACL short paper
 - 内容介绍：
@@ -547,4 +547,16 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - LCSTS:来自新浪微博的大量短文本的摘要
   - English Gigaword: 标注的新闻数据集
 - Baseline见文章的内容。其实在之前的论文里面也有介绍过，不在赘述。
+
+### 24. Multi‑Task Learning for Abstractive and Extractive Summarization
+
+- 年份 2019 Data Science and Engineering
+- 内容介绍
+  - 本文主要介绍了联合抽取和生成摘要，形成多任务学习，抽取式是内容重要信息（句子分数）的评估，生成式是连贯性的评估。1. 分层次的文档编码，先用双向的GRU来进行单词编码，再用双向的GRU编码句子，形成一个层次话的编码，然后共享该编码 2. 基于解码的分层注意力 3. 一个抽取器构成该框架的三个部分。多任务学习体现在，解码的负对数损失函数+抽取句子的交叉上损失函数+文章注意力的l2损失。
+- 创新点
+  - 层次化的表示,捕捉了局部和全局的信息
+  - 多任务的学习办法，生成摘要为主要的任务，抽取摘要为辅助任务，联合训练使用了多任务学习
+- 数据集
+  - CNN：
+  - DailyMail：
   
