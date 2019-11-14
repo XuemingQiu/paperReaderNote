@@ -573,4 +573,24 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - 数据集
   - 推特数据集：[数据集](<https://wiki.illinois.edu/wiki/display/forward/Dataset-UDI-TwitterCrawl-Aug2012>)
 - Baseline：参见文章的内容的介绍
-  
+
+### 26. Faithful_to_the_Original_ Fact-Aware_Neural_Abstractive_Summarization
+
+- 年份：2018 AAAI
+- 内容介绍
+  - 本文发现在生成式摘要的过程中，有30%左右的摘要包含了虚假的的事实。本文想要改进这个生成式摘要包含虚假信息的问题，本文通过利用OpenIE来抽取一段文本中的事实关系，用三元组来表示（主，谓，宾）来描述一个事实，然后通过讲原文本和描述事实的文本，进行双编码（BiGRU），然后在解码阶段（单项RNN），利用双注意力机制（原文本注意力和事实描述注意力），进行生成文本（一个词接着一个词）。
+- 创新点
+  - 增强了生成摘要的事实描述问题
+  - 建立了双注意力模型
+  - 事实描述是对原文的一个压缩，可以促进生成摘要的信息度
+- 数据集
+  - English Gigaword：新闻数据集，标题就是摘要
+- 评估手段
+  - ROUGE:ROUGE-L和可读性相关
+- Baseline(以下的详细描述见论文)
+  - ABS
+  - ABS+
+  - RAS-Elman
+  - Feats2s
+  - Luong-NMT
+  - att-s2s
