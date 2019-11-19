@@ -594,3 +594,21 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - Feats2s
   - Luong-NMT
   - att-s2s
+
+### 27. Facts That Matter.pdf
+
+- 年份： 2018 EMNLP
+- 内容介绍 [代码](<https://github.com/mponza/SalIE>)
+  - 本文介绍了一种事实突出任务，提出了SALIE，无监督和与知识无关的
+  - SALIE：（Salient Information Extraction），主要是用来抽取原文本中的突出事实，主要不满足相关性和多样性。事实为基本的原子单元，利用pageRank来检测事实的相关性，利用聚类来检测事实的多样性。
+    - 事实相关性：第一步事实为节点（有MINIE(2017年提出的开放式信息抽取系统)抽取得到），第二步边的权重，使用的是word2vec，语义相似度，第三步：相关先验性。第四步：相关性计算，利用pagerank计算
+    - 事实多样性：就是聚类
+- 创新点
+  - 首次提出事实突出性任务
+  - 提供了SALIE系统
+- 数据集
+  - NYT（New York Times）：新闻文章
+- 评估手段
+  - Rouge
+- 缺点
+  - 本文没有考虑事实的正确性，只是抽取到事实和人工的摘要进行ROUGE分析
