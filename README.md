@@ -613,7 +613,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - 缺点
   - 本文没有考虑事实的正确性，只是抽取到事实和人工的摘要进行ROUGE分析
 
-### Unity in Diversity_ Learning Distributed Heterogeneous Sentence Representation for Extractive Summarization-AAAI-2018.pdf
+### 28. Unity in Diversity_ Learning Distributed Heterogeneous Sentence Representation for Extractive Summarization-AAAI-2018.pdf
   
 - 年份 2018 AAAI
 - 内容介绍
@@ -634,4 +634,13 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - DUC数据集发：[下载地址](<http://duc.nist.gov/data.html>)
 - BaseLine
   - 主要是在DUC数据集上的一些表现性能好的baseline，见文章的描述。
-  
+
+### 29. Guided_Neural_Language_Generation_for_Abstractive_Summarization.pdf
+
+- 年份 2018 EMNLP short paper
+- 内容介绍
+  - 本文介绍了一种利用AMR来引导神经语言生成进行抽象摘要。分为两步1. 恢复AMR缺失但是NLG却需要的信息；2.提高摘要质量。解决办法1.建立边缘信息的概率分布（probability distribution of the side infomation）；2.在自然语言生成（NLG）步骤时，用该分布来引导seq2seq+注意力模型。
+  - 这部分的细节，没有看太懂，介绍的不详细
+  - 代码 [本文代码](<https://github.com/sheffieldnlp/AMR2Text-summ>)
+- 数据集
+  - Rroxy Report section from the AMR dataset
