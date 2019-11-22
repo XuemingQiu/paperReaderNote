@@ -612,3 +612,26 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - Rouge
 - 缺点
   - 本文没有考虑事实的正确性，只是抽取到事实和人工的摘要进行ROUGE分析
+
+### Unity in Diversity_ Learning Distributed Heterogeneous Sentence Representation for Extractive Summarization-AAAI-2018.pdf
+  
+- 年份 2018 AAAI
+- 内容介绍
+  - 本文主要抽取摘要的句子语义和句子组成结构的特征来捕获文档的非独立特征表示，称做HNet。
+  - 本文的模型架构
+    - CSTI：捕获全局，局部，组成依赖（短语），和句子的关键信息。该部分组成：卷积编码（捕获n-gram的特征，最大池化获得特征向量），双向lstm树索引（Bidirectional Long Short Term Memory Tree Indexer：在句子语义和组成层面捕获文档的独立特征）。
+      - 卷积编码：解决长依赖问题，有效压缩表示，有效的句子分类
+      - 双向lstm树索引：叶子和非叶子结点的操作
+    - Extractor：从给定的句子中抽取文档的特征。考虑了，句子位置，词频，平均词频，idf，最大idf
+    - Regression Layer：预测句子分数并且句子排序。传统的的句子监督句子重要性的分数衡量。
+    - 移除冗余句子：判断句子的相似性，最后使用了曼哈顿距离衡量。
+- 创新点
+  - 使用CNN来捕获文档的句子语义和句子结构组成特征
+  - 去除抽取式的重复的句子
+  - 利用转换学习克服了缺乏多文档摘  数据的问题
+- 数据集
+  - Daily Mail数据集：
+  - DUC数据集发：[下载地址](<http://duc.nist.gov/data.html>)
+- BaseLine
+  - 主要是在DUC数据集上的一些表现性能好的baseline，见文章的描述。
+  
