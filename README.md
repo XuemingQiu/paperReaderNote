@@ -644,3 +644,27 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - 代码 [本文代码](<https://github.com/sheffieldnlp/AMR2Text-summ>)
 - 数据集
   - Rroxy Report section from the AMR dataset
+
+### 30. A_Bayesian_Method_to_Incorporate_Background_Knowledge_during_automatic_text_summarization.pdf
+
+- 年份 2014 ACL
+- 内容介绍：
+  - 本文介绍了一种认为摘要的背景只是很重要，所以加入基于贝叶斯发现的模型，即该模型可以决定了是哪一块的文本是改变这个人的想法。很简单的道理，就是说随着背景知识的增加，一个人的想法会改变。本文提出了两种摘要，一种是通用型摘要：用随机的大数据新闻文章做为背景知识，一种是更新型摘要：小数据集特定主题的新闻文章作为背景知识。
+  - 贝叶斯发现（Bayesian surprise）：定义见文章第三部分。
+  - 抽取摘要的算法：
+    1. 计算单词的分数：根据单词的类型，单词的surprise度为单词的KL散度
+    2. 计算句子分数：由单词组成句子分数
+    3. 句子选择：选择一个分数高的句子，则把该句包含的主题词分数给设置成0（为了避免冗余）.然后重新运行1,2两步，直到达到摘要句子的长度
+  - 贝叶斯发现保持了关于背景的多假设，主题词的计算是一个二项分布的
+  - 通用型：使用了多文档输入（DUC2004），背景使用了English Gigaword corpus
+  - 更新型：使用了TAC 2009，保证A比B输入的时间迟。
+- 创新点
+  - 直接模拟了人的观点，人如何基于背景知识区别一个主题或者事件的重要程度
+- 数据集
+  - [DUC 2004](<https://www-nlpir.nist.gov/projects/duc/index.html>)
+  - [TAC 2009](<https://tac.nist.gov/>)
+  - English Gigawords
+- 评估手段
+  - Rouge： Rouge-1，Rouge-2
+- Baseline
+  - 有$KL_{back}$,$TS_{sum}$等，具体看文章的介绍.
