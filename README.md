@@ -668,3 +668,24 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - Rouge： Rouge-1，Rouge-2
 - Baseline
   - 有$KL_{back}$,$TS_{sum}$等，具体看文章的介绍.
+
+### 31. Extract_with_Order_for_Coherent_Multi_Document_Summarization.pdf
+
+- 年份 2017 ACL
+- 内容介绍：本文解决了一个多文档抽取式摘要的句子排序（句子位置）的连贯性问题，以此来增加可读性。使用关键短语的连续向量表示。
+  - 句子抽取的过程是先去停词，然后使用了预训练的词向量E，一句话的表示就是$S = \sum_{w \in S} TF(w,S)*E[idx[w]]$其中idx[w]就是词的索引，TF(w,S)代表一个单词在一句话中的出现次数。第二个是计算句子$S_i,S_j$之间的相似度，这里定义了两句之间的命名实体之间的相似性$NESim(S_i,S_j) = \frac{|NE(S_i) \cap NE(S_j)|}{min(|NE(S_i)|,|NE(S_j)|)}$,其中$NE(S_i)$代表就是利用NLTK提取到的命名实体，同时余弦相似度$CosSim(S_i,S_j)$,最后得到两个句子之间的相似度
+  $$Sim(S_{i},S_j) = \lambda * NESim(S_i,S_j) + (1-\lambda)*CosSim(S_i,S_j)$$
+  - 利用TextRank（本来相似度是字典重合的相似度）算法进行抽取句子，利用上述的相似度替换了TextRank的权重。初始化设置每个节点的分数为1，更新规则为
+  $$Rank(S_i) = (1-d)+\sum_{S_j \in N(S_i)}\frac{Sim(S_i,S_j)}{\sum_{S_k \in N(S_j)}Sim(S_j,S_k)} Rank(S_j)$$
+  其中$N(S_i)$代表句子$S_i$的邻接节点,d=0.85.
+  - 句子聚类：使用了2014年Murtagh提出的分层聚集聚类的算法。将句子聚在一起。
+  - 句子选择：在约束限制下进行整数规划限制ILP，来进行选择句子。抽取关键的短语（词或短语，包含了主题的信息）利用了[RAKE](<https://github.com/aneesha/RAKE>)来提取句子的关键短语。
+  - 句子排序，以前是利用句子位置和时间戳信息，这次定义了连惯性的
+    $$Coherence(D) = \frac{\sum_{i=1}^{n-1}Sim(S_i,S_{i+1})}{n-1} $$
+- 创新点
+  - 多文档抽取的句子连贯性解决
+  - 提出了一个句子相似性的计算
+- 数据集
+  - DUC 2004
+- BaseLIne
+  - 见文章描述，lexRank，GreedyKL等等。
