@@ -689,3 +689,19 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - DUC 2004
 - BaseLIne
   - 见文章描述，lexRank，GreedyKL等等。
+  
+### Global_Optimization_under_Length_Constraint_for_Neural_Text_Summarization.pdf
+
+- 年份： 2019 ACL
+- 内容介绍
+  - 本文介绍了一种在长度限制条件下的全局优化的算法GOLC，以前有两种优化方式，分别是最大似然估计（MlE）和最小风险训练（MRT）。生成式的摘要存在不关注长度限制的问题，并且目前长度限制下的效果不好。所有本文提出了，修改了长度限制下的的损失函数的问题，最后将三种方式进行对比。
+- 创新点
+  - 新的长度限制下的全局优化的算法
+- 数据集
+  - CNN/Daily Mail:新闻文档包含多文档摘要
+  - Mainichi Shibun Newspapers: a Japanese single document summarization.
+- BaseLine
+  - LEAD：抽取全文的前三句
+  - PG：基于LSTM的标准点生成网络
+  - PG w/ LE : PG的扩展，在训练的过程中，考虑了和参考摘要之间的剩余长度。
+  - LC：卷积的编码-解码控制长度。包含了词的位置和位置embedding.
