@@ -690,7 +690,7 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - BaseLIne
   - 见文章描述，lexRank，GreedyKL等等。
   
-### Global_Optimization_under_Length_Constraint_for_Neural_Text_Summarization.pdf
+### 32. Global_Optimization_under_Length_Constraint_for_Neural_Text_Summarization.pdf
 
 - 年份： 2019 ACL
 - 内容介绍
@@ -705,3 +705,14 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
   - PG：基于LSTM的标准点生成网络
   - PG w/ LE : PG的扩展，在训练的过程中，考虑了和参考摘要之间的剩余长度。
   - LC：卷积的编码-解码控制长度。包含了词的位置和位置embedding.
+
+### 33. Autoencoder as Assistant Supervisor: Improving Text Representation for Chinese Social Media Text Summarization
+
+- 年份： 2018年 ACL
+- 内容介绍
+  - 本文介绍了基于seq2seq，提出自动编码作为辅助的手段，提高摘要的分数.[代码][<https://github.com/lancopku/superAE>]
+  - 具体的思路：就是通过监督自动编码的方式将参考摘要和原文本学习自动编码，提高文本的内部表示，最小化参考摘要和原文之间的距离，采用了对抗学习的办法（扔进去判别器进行判断），然后联合了三个损失函数来进行学习。
+- 数据集
+  - LCSTS： 大型中文语料集
+  - Amazon Fine Foods Reviews Corpus: 用户标签作为评价的摘要，主要用来判断本文提出提出的这个语义是不是增强表示了
+  
