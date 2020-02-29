@@ -715,4 +715,16 @@ seq2seq模型目前还有很多缺点，本文所做实验表明：
 - 数据集
   - LCSTS： 大型中文语料集
   - Amazon Fine Foods Reviews Corpus: 用户标签作为评价的摘要，主要用来判断本文提出提出的这个语义是不是增强表示了
+
+### A_Simple_Theoretical_Model_of_Importance_for_Summarization
+
+- 年份：ACL 2019
+- 内容介绍：
+  - 本文从摘要的本质上进行分析了一个好的摘要所具备的条件，分别是冗余度(redundancy)，相关性(relevance)，informativenes，重要性(importance)。其中，重要性这个概念是论文新突出的理念.
+  - 从交叉熵的角度来进行均衡找摘要的这几个要素，最后的重要性是对相关性和informativenes的一个整合，使用了交叉熵来衡量,相关性和冗余性的整合使用了KL散度来衡量，最后一起联合起来构成这个损失函数
+  - [详细解读](<https://mp.weixin.qq.com/s?__biz=MjM5ODkzMzMwMQ==&mid=2650411543&idx=1&sn=d82ed3285aa40773b6360e0199fb6386&chksm=becd944d89ba1d5b708ea2ecba3735a8c54bc42fbc310f2b813742082cf6885a7a9db28edc17&mpshare=1&scene=1&srcid=&sharer_sharetime=1582956809781&sharer_shareid=a5b548e212af50c1173a81983a8b38e2&key=fe2bc2e3e38481790e70e01cbe9e2592b7273d1688489b699b76011b9e112999aa10c43b4b503b05c0d1ccd3692bb378ce42ad4526594ce5f0aaa8cfffd2b625600ec80f5e699b56d8e84bdf930f3528&ascene=1&uin=MTYyOTM3NzkzOA%3D%3D&devicetype=Windows+10&version=62080074&lang=zh_CN&exportkey=A7N5Q65AAlSrFBofEhZJybI%3D&pass_ticket=qLvMAVK1I7kE3s9nFo5SB6917FbdCsPieMSwoJhUtJ1V8Tpm9hSJ7wA3fOQs8faz>)
+- 创新点
+  - 借鉴了信息论的知识，使用了交叉熵的思路取衡量这个摘要的各个方面
+  - 原理上相对比较简单
+
   
